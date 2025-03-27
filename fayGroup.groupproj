@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CE4CF083-EB7B-461D-8765-B26EFF123323}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FayMsqlVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FaySrvMsql.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FayVCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FayMsqlVCL">
+        <MSBuild Projects="FayMsqlVCL.dproj"/>
+    </Target>
+    <Target Name="FayMsqlVCL:Clean">
+        <MSBuild Projects="FayMsqlVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FayMsqlVCL:Make">
+        <MSBuild Projects="FayMsqlVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FaySrvMsql">
+        <MSBuild Projects="FaySrvMsql.dproj"/>
+    </Target>
+    <Target Name="FaySrvMsql:Clean">
+        <MSBuild Projects="FaySrvMsql.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FaySrvMsql:Make">
+        <MSBuild Projects="FaySrvMsql.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FayVCL">
+        <MSBuild Projects="FayVCL.dproj"/>
+    </Target>
+    <Target Name="FayVCL:Clean">
+        <MSBuild Projects="FayVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FayVCL:Make">
+        <MSBuild Projects="FayVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FayMsqlVCL;FaySrvMsql;FayVCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FayMsqlVCL:Clean;FaySrvMsql:Clean;FayVCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FayMsqlVCL:Make;FaySrvMsql:Make;FayVCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
